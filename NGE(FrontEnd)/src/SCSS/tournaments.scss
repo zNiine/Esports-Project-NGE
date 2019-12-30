@@ -1,0 +1,76 @@
+body{
+    color: white;
+}
+#TournamentContainer{
+    width: 80%;
+    height: 100vh;
+    float: right;
+    
+}
+
+#topRow{
+    height: 20%;
+}
+
+#codId{
+    height: 6%;
+    width: 100px;
+    margin-top: 25%;
+    margin-left: 25%;
+    cursor: pointer;
+}
+
+#fortniteId{
+    height: 16%;
+    width: 100px;
+    margin-top: 25%;
+    margin-left: 25%;
+    cursor: pointer;
+
+}
+
+#tkId{
+    height: 26%;
+    width: 80px;
+    margin-top: 25%;
+    margin-left: 25%;
+    cursor: pointer;
+
+}
+
+#maddenId{
+    height: 15%;
+    width: 80px;
+    margin-top: 25%;
+    margin-left: 25%;
+    cursor: pointer;
+
+}
+
+
+
+#middleRow{
+    height: 40%;
+    overflow-x: scroll;
+    
+}
+#bottomRow{
+    height: 40%;
+    
+}
+::-webkit-scrollbar {
+    width: 0px; 
+    background: transparent;  
+}
+
+#imageTag{
+    height: 15%;
+    width: 200px;
+    padding-left: 25%;
+    cursor: pointer;
+}
+
+#info{
+    padding-left: 25%;
+    cursor: pointer;
+}

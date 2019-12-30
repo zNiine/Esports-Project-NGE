@@ -1,0 +1,44 @@
+$black: #080808;
+$ngeBlue: #00e5ff;
+
+#navContainer{
+    height: 100vh;
+    width: 20%;
+    border-right: 2px solid $ngeBlue;
+    color: white;
+}
+
+#ngeLogo{
+    height: 20%;
+    width: 50%;
+    border-radius: 50%;
+    margin-top: 10%;
+    background-color: $ngeBlue;
+    cursor: pointer;
+}
+
+hr{
+    color: $ngeBlue;
+    border-color: $ngeBlue
+}
+
+#username{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+#menu{
+    color: $ngeBlue;
+    font-size: 25px;
+    margin-top: 10%;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+    color: $ngeBlue
+}
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/index.css') }}"/>
+<style type="text/css">
+    html, body{
+        background: #080808;
+        height: 100%;
+        width: 100%;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    #nav{
+        height: 100%; 
+        width: 15%;
+        border-right: 5px solid #00e5ff;
+        float: left;
+        color: #00e5ff;
+    }
+
+    #ngeLogoPic{
+        margin-top: 35px;
+        border-radius: 100%;
+        margin-left: 25%;
+    }
+</style>
+<script type="text/javascript">
+    function lLoad(){
+        if(window.localStorage.getItem('userID') != null){
+            setPage();
+        }else{
+            window.location.replace('login.htm')
+        }
+    }
+
+    function setPage(){
+        var picture = ajaxCalls("POST", "getImage", window.localStorage.getItem('username'))
+        alert(picture)
+        document.getElementById("ngeLogo").src = picture
+
+    }
+
+    function ajaxCalls(type, url, data)
+        {
+            
+             url = 'http://127.0.0.1:5000/' + url
+             $.ajax({
+                 type: type,
+                 url: url,
+                contentType: "application/json",
+                 dataType: "json",
+                 data: JSON.stringify(data),
+                 success: function(data){
+                    console.log(data)
+                    return data
+              }
+            })
+
+        }
+</script>
+</head>
+<body onload="lLoad();">
+    <div id="nav">
+        <div id="ngeLogo">
+            <img id="ngeLogoPic" src="../static/Images/nge.png" height="100px" width="100px" />
+        </div>
+    </div>
+
+
+</body>
+</html>

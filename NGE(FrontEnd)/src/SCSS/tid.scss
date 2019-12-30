@@ -1,0 +1,36 @@
+$black: #080808;
+$ngeBlue: #00e5ff;
+
+body{
+    color: white;
+}
+#tContainer{
+    height: 100vh;
+    width: 80%;
+    color: white;
+    float: right;
+}
+
+.tMen{
+    display: inline;
+    margin: 20px;
+}
+#tMenu{
+    color: $black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+  
+    
+    border-top: 60px solid $ngeBlue;
+    border-left: 60px solid $black;
+    border-right: 60px solid $black;
+}
+
+#ttMenu{
+    margin-top: -7.2%;
+    word-spacing: 30px;
+    font-size: 40px;
+    
+}

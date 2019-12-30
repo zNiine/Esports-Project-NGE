@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/login.css') }}"/>
+        <script type="text/javascript"  src="{{ url_for('static', filename='load.js') }}"></script>
+        <script type="text/javascript">
+
+        function lLoad(){
+            
+          
+            if(window.localStorage.getItem('userID') != null){
+                window.location.replace('index.htm');
+            }
+}
+
+
+
+        function registerUser(){
+            var username = document.getElementById("username").value
+            var email = document.getElementById("remail").value
+            var password = document.getElementById("rrPassword").value
+            var rpassword = document.getElementById("rpassword").value
+                if(password != rpassword){
+                    alert("Password's do not match")
+                    
+                }
+                else{
+                    
+                   
+                    var x = ajaxCalls("POST", "checkEmail", email)
+                    setTimeout(function() {
+                        if(x == true)
+                        {
+                            alert("This email has already been registered")
+                        }
+                        else{
+                            
+                            setTimeout(function() {
+                               var y = ajaxCalls("POST", "checkUsername", username)
+
+                                if(y==true)
+                                {
+                                    alert("This username has been taken")
+                                }
+                                else{
+                                    registerFirebaseUser(username, email, password)
+                                }
+                            }, 1500);
+                        }
+                    }, 1500);
+                }
+                
+                
+        }
+
+        function registerFirebaseUser(a,b,c){
+          
+            firebase.auth().createUserWithEmailAndPassword(b, c).then(function(user){
+            
+            setTimeout(function(){
+                var data = {
+                username: a,
+                email: b,
+                userID: firebase.auth().currentUser.uid
+            }
+
+
+                console.log(user.uid)
+                console.log(user)
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:5000/createUser",
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify(data),
+                     success: function(data){
+                         alert("Hello")
+                    
+                    }})
+            }, 900)
+           
+            localStorage.setItem('username', a);
+            localStorage.setItem('userID', firebase.auth().currentUser.uid);
+
+            }).catch(function(error) {
+  
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+  
+            });
+
+        }
+
+        function ajaxCalls(type, url, data)
+        {
+            
+             url = 'http://127.0.0.1:5000/' + url
+             $.ajax({
+                 type: type,
+                 url: url,
+                contentType: "application/json",
+                 dataType: "json",
+                 data: JSON.stringify(data),
+                 success: function(data){
+                    console.log(data)
+                    return data
+              }
+            })
+
+        }
+        
+        
+        </script>
+    </head>
+    <body onload="lLoad()">
+      <!-- Left Side Menus-->
+      <div id="leftSideMenu">
+          <div id="ngeLogo">
+              <img id="ngeLogoPic" src="../static/Images/nge.png" height="100px" width="100px" />
+          </div>
+          <div id="menuList">
+              
+              News<br/>
+              About<br/>
+              Streams<br/>
+              League<br/>
+              
+          </div>
+      </div>
+
+      <!-- Register -->
+      <div id="registerPanel">
+          <div id="rPContent">
+                <input id="username" placeholder="username" /> <br/>
+                <input id="remail" placeholder="email" /><br/>
+                <input id="rpassword" placeholder="Password" type="password" /><br/>
+                <input id="rrPassword" placeholder="Re-Password" type="password" /><br/><br/>
+                <button onclick="registerUser()" class="button" id="rB"> Register </button>
+          </div>
+
+          <div id="lPContent">
+                <input id="email" placeholder="email" /> <br/>
+                <input id="password" placeholder="password" /> <br/><br/>
+                <button class="button" id="rB">Login</button>
+          </div>
+      </div>
+      <!-- Login -->
+      <div id="loginPanel">
+         
+          
+      </div>
+      <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+              apiKey: "AIzaSyDr8vlKmtnoDoMZHuV1842fDp5ASzBfpho",
+              authDomain: "usersdb-686d9.firebaseapp.com",
+              databaseURL: "https://usersdb-686d9.firebaseio.com",
+              projectId: "usersdb-686d9",
+              storageBucket: "usersdb-686d9.appspot.com",
+              messagingSenderId: "287512818815",
+              appId: "1:287512818815:web:8e4993ca023baf27f57b4a",
+              measurementId: "G-D8PJNSH6SS"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+         
+          </script>
+    </body>
+</html>

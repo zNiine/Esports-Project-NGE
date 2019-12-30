@@ -1,0 +1,72 @@
+$black: #080808;
+$ngeBlue: #00e5ff;
+
+html, body{
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-color: $black;
+}
+
+#loginMainPanel{
+    background-color: $black;
+    height: 100vh;
+    width: 100%;
+    color: black;
+}
+
+#leftPanel{
+    width: 20%;
+    height: 100%;
+    border-right: 5px solid $ngeBlue;
+    float: left;
+}
+
+#ngeLogo{
+    height: 20%;
+    width: 50%;
+    border-radius: 50%;
+}
+
+#middlePanel{
+    border: 2px solid $ngeBlue;
+    height: 300px;
+    width: 40%;
+    float: left;
+    margin-left: 20%;
+    margin-top: 10%;
+}
+
+input{
+    margin-top: 5px;
+    border-radius: 5%;
+    border: 2px solid $ngeBlue;
+    background-color: $black;
+    color: $ngeBlue;
+    text-align: center
+}
+
+#registerPanel{
+    float: left;
+    margin-left: 15%;
+    margin-top: 15%;
+}
+
+#loginPanel{
+    float: right;
+    margin-right: 15%;
+    margin-top: 15%;
+}
+
+input::placeholder{
+    color: gray;
+}
+
+button{
+    margin-top: 15%;
+    color: $ngeBlue;
+    background-color: $black;
+    border-radius: 10%;
+    border: 2px solid $ngeBlue
+}
